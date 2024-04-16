@@ -21,6 +21,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <version>0.44.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -40,6 +45,37 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.44.0</version>
+                <configuration>
+                    <pushRegistry>localhost:5000</pushRegistry>
+                    <containerNamePattern>%n</containerNamePattern>
+                    <images>
+                        <image>
+                            <alias>archunit-demo</alias>
+                            <name>archunit-workshop/archunit-demo:${project.version}</name>
+                            <build>
+                                <from>openjdk:17-alpine</from>
+                                <assemblies>
+                                    <assembly>
+                                        <mode>dir</mode>
+                                        <descriptorRef>artifact</descriptorRef>
+                                    </assembly>
+                                </assemblies>
+                                <entryPoint>java -jar maven/${project.artifactId}-${project.version}.jar</entryPoint>
+                            </build>
+                            <run>
+                                <ports>
+                                    <port>8080:8080</port>
+                                </ports>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
             </plugin>
         </plugins>
     </build>
