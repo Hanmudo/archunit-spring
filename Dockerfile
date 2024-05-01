@@ -1,4 +1,4 @@
-FROM maven:3-eclipse-temurin-17-alpine AS builder
+FROM maven:3.8.1-openjdk-17 as builder
 WORKDIR /workdir/server
 COPY pom.xml /workdir/server/pom.xml
 RUN mvn dependency:go-offline
@@ -9,7 +9,7 @@ RUN mkdir  -p target/depency
 WORKDIR /workdir/server/target/dependency
 RUN jar -xf ../*.jar
 
-FROM eclipse-temurin:17-jdk-alpine
+FROM maven:3.8.1-openjdk-17
 
 EXPOSE 8080
 VOLUME /tmp
