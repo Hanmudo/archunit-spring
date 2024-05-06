@@ -1,7 +1,0 @@
-@startuml
-'https://plantuml.com/component-diagram
-[Ticket Endpoint] <<..com.example.archunitspring.presentation.endpoints.TicketEndpoint..>>
-[TicketService] <<..com.example.archunitspring.application.interfaces.TicketService..>> as target
-
-[Ticket Endpoint] --> target
-@enduml

@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+[Ticket Endpoint] <<..com.example.archunitspring.presentation.endpoints.TicketEndpoint..>> #white/PowderBlue
+[TicketService] <<..com.example.archunitspring.application.interfaces.TicketService..>> as target #white/Green
+
+[Ticket Endpoint] --> target
+@enduml
