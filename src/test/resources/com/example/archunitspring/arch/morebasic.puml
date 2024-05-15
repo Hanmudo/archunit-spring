@@ -3,8 +3,11 @@
 
 [Ticket Endpoint] <<..com.example.archunitspring.presentation.endpoints.TicketEndpoint..>> as ticketendpoint #white/PowderBlue
 [PlaneTicketService] <<..com.example.archunitspring.application.services.PlaneTicketServiceImpl..>> as planeticketservice #white/PowderBlue
+[TrainTicketService] <<..com.example.archunitspring.application.services.TrainTicketServiceImpl..>> as trainticketservice #white/PowderBlue
 [TicketService] <<..com.example.archunitspring.application.interfaces.TicketService..>> as ticketservice #white/Green
 
+trainticketservice -> ticketservice : implements
 planeticketservice -> ticketservice : implements
 ticketendpoint <-- ticketservice
+[component]
 @enduml
